@@ -1,0 +1,375 @@
+/* SpillTrace AI — Dark Control-Room Design System */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg-dark: #090D16;
+  --bg-panel: #111726;
+  --bg-card: #182032;
+  --bg-card-hover: #1F2A42;
+  --border-color: #26334D;
+  --border-light: #334466;
+  
+  --accent-cyan: #06B6D4;
+  --accent-amber: #F59E0B;
+  --accent-red: #EF4444;
+  --accent-emerald: #10B981;
+  --accent-purple: #8B5CF6;
+  
+  --text-main: #F3F4F6;
+  --text-muted: #9CA3AF;
+  --text-dim: #6B7280;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-light);
+}
+
+/* Glassmorphism & Panel Utilities */
+.glass-panel {
+  background: rgba(17, 23, 38, 0.92);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+}
+
+.control-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  transition: all 0.2s ease-in-out;
+}
+
+.control-card:hover {
+  border-color: var(--border-light);
+  background: var(--bg-card-hover);
+}
+
+/* Radar Pulse Marker Animation for Dark Vessels */
+.dark-vessel-pulse-icon {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pulse-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 28px;
+  height: 28px;
+  border: 2px dashed #EF4444;
+  border-radius: 50%;
+  animation: radar-pulse 2s infinite ease-out;
+  pointer-events: none;
+}
+
+.pulse-ring-outer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  border-radius: 50%;
+  animation: radar-pulse 2s infinite ease-out 0.6s;
+  pointer-events: none;
+}
+
+.dark-vessel-inner {
+  width: 14px;
+  height: 14px;
+  background-color: #EF4444;
+  border: 2px solid #FFFFFF;
+  border-radius: 3px;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.8);
+  transform: rotate(45deg);
+  z-index: 2;
+}
+
+@keyframes radar-pulse {
+  0% {
+    width: 16px;
+    height: 16px;
+    opacity: 1;
+  }
+  100% {
+    width: 48px;
+    height: 48px;
+    opacity: 0;
+  }
+}
+
+/* Normal Vessel Marker */
+.vessel-marker-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vessel-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 0 8px currentColor;
+}
+
+/* MapLibre 3D Map Custom Popup & Tooltip Styling */
+.maplibregl-popup {
+  max-width: 300px !important;
+  z-index: 30;
+}
+
+.maplibregl-popup-content {
+  background: rgba(17, 23, 38, 0.95) !important;
+  color: var(--text-main) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 12px !important;
+  padding: 12px 14px !important;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.75), 0 0 15px rgba(6, 182, 212, 0.15) !important;
+  backdrop-filter: blur(12px) !important;
+  font-family: 'Inter', system-ui, sans-serif !important;
+}
+
+.maplibregl-popup-tip {
+  border-top-color: rgba(17, 23, 38, 0.95) !important;
+  border-bottom-color: rgba(17, 23, 38, 0.95) !important;
+}
+
+.maplibregl-popup-close-button {
+  color: #9CA3AF !important;
+  font-size: 16px !important;
+  padding: 4px 8px !important;
+  top: 4px !important;
+  right: 4px !important;
+}
+
+.maplibregl-popup-close-button:hover {
+  color: #FFFFFF !important;
+  background: transparent !important;
+}
+
+.maplibregl-canvas-container {
+  width: 100%;
+  height: 100%;
+}
+
+.maplibregl-canvas {
+  outline: none;
+}
+
+/* 3D Map Control HUD Buttons */
+.map-hud-btn {
+  background: rgba(17, 23, 38, 0.9);
+  border: 1px solid var(--border-color);
+  color: #D1D5DB;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(8px);
+}
+
+.map-hud-btn:hover {
+  background: rgba(30, 41, 59, 0.95);
+  border-color: var(--accent-cyan);
+  color: #00F0FF;
+  box-shadow: 0 0 12px rgba(6, 182, 212, 0.3);
+}
+
+.map-hud-btn.active {
+  background: rgba(6, 182, 212, 0.2);
+  border-color: var(--accent-cyan);
+  color: #00F0FF;
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
+}
+
+/* Slick Tooltip */
+.slick-tooltip {
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid var(--accent-red);
+  color: #F87171;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.15s ease-out forwards;
+}
+
+/* 3D Deep Space Starfield & Globe Container */
+.globe-space-canvas {
+  background: radial-gradient(ellipse at center, #0a1329 0%, #050a17 55%, #02040a 100%) !important;
+  position: relative;
+}
+
+.space-starfield {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: 
+    radial-gradient(1px 1px at 25px 35px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 140px 75px, #bae6fd, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 280px 210px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 420px 110px, #93c5fd, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 580px 340px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 720px 180px, #c4b5fd, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 860px 410px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 1020px 140px, #67e8f9, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 1180px 270px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 1320px 80px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 1480px 320px, #a5f3fc, rgba(0,0,0,0));
+  background-repeat: repeat;
+  background-size: 700px 500px;
+  opacity: 0.8;
+  z-index: 0;
+}
+
+/* Atmospheric Horizon Glow for Globe */
+.globe-atmosphere-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 100px rgba(6, 182, 212, 0.08);
+  z-index: 1;
+}
+
+/* Custom Cursor in Orbit Mode */
+.cursor-orbit-ready {
+  cursor: grab !important;
+}
+
+.cursor-orbit-ready:active {
+  cursor: grabbing !important;
+}
+
+/* Compass HUD Dial */
+.compass-dial-container {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.95);
+  border: 1.5px solid #26334D;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.compass-dial-container:hover {
+  border-color: #06B6D4;
+  box-shadow: 0 0 14px rgba(6, 182, 212, 0.4);
+}
+
+.compass-needle {
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 14px solid #EF4444;
+  position: absolute;
+  top: 5px;
+  filter: drop-shadow(0 0 4px rgba(239, 68, 68, 0.8));
+  transform-origin: 50% 13px;
+  transition: transform 0.2s ease-out;
+}
+
+.compass-needle-south {
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 14px solid #94A3B8;
+  position: absolute;
+  bottom: 5px;
+  transform-origin: 50% 1px;
+}
+
+/* Globe Position & D-Pad Control Styles */
+.globe-hud-capsule {
+  background: rgba(17, 23, 38, 0.95);
+  border: 1px solid rgba(6, 182, 212, 0.4);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(6, 182, 212, 0.15);
+  backdrop-filter: blur(12px);
+  transition: all 0.2s ease;
+}
+
+.globe-hud-capsule:hover {
+  border-color: rgba(6, 182, 212, 0.7);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7), 0 0 25px rgba(6, 182, 212, 0.25);
+}
+
+.dpad-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(24, 32, 50, 0.85);
+  border: 1px solid #26334D;
+  color: #D1D5DB;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.dpad-btn:hover {
+  background: rgba(6, 182, 212, 0.2);
+  border-color: #06B6D4;
+  color: #00F0FF;
+  transform: scale(1.05);
+}
+
+.dpad-btn:active {
+  transform: scale(0.95);
+  background: rgba(6, 182, 212, 0.35);
+}
+
+.globe-elevate-active {
+  background: rgba(6, 182, 212, 0.25) !important;
+  border-color: #06B6D4 !important;
+  color: #00F0FF !important;
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.4) !important;
+}
+
+
+

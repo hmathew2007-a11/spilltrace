@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpillTrace AI — Satellite Oil Spill Investigation & Dark Vessel Backtracking</title>
+  <meta name="description" content="Control-room satellite investigation dashboard that detects ocean oil spills, backtracks them to a probable source, and cross-references vessel traffic and AIS blackouts.">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'dark-bg': '#090D16',
+            'dark-panel': '#111726',
+            'dark-card': '#182032',
+            'dark-border': '#26334D',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- MapLibre GL JS 5.x 3D Globe & Map Engine CSS & JS -->
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.css" />
+  <script src="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.js"></script>
+
+  <!-- React 18 & ReactDOM -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+  <!-- Babel for Standalone JSX -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- jsPDF CDN for Report Exports -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <!-- Custom Design System Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- Application Modules & DB Layer -->
+  <script src="js/types.js"></script>
+  <script type="module">
+    import { dbManager } from './js/db.js';
+    import { mockApi } from './js/mockApi.js';
+    window.dbManager = dbManager;
+    window.mockApi = mockApi;
+  </script>
+  
+  <script type="text/babel" src="js/components/ForecastTab.js"></script>
+  <script type="text/babel" src="js/components/CleanupEstimatorCard.js"></script>
+  <script type="text/babel" src="js/components/ResponseRouteModal.js"></script>
+  <script type="text/babel" src="js/components/TopNavbar.js"></script>
+  <script type="text/babel" src="js/components/LeftSidebar.js"></script>
+  <script type="text/babel" src="js/components/DashboardOverview.js"></script>
+  <script type="text/babel" src="js/components/MapView.js"></script>
+  <script type="text/babel" src="js/components/SuspectPanel.js"></script>
+  <script type="text/babel" src="js/components/TimelineScrubber.js"></script>
+  <script type="text/babel" src="js/components/ReportModal.js"></script>
+  <script type="text/babel" src="js/components/NewCaseModal.js"></script>
+  <script type="text/babel" src="js/components/CaseArchiveView.js"></script>
+  <script type="text/babel" src="js/app.js"></script>
+</body>
+</html>
